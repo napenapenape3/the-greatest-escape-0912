@@ -9,15 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#050406;
-  --ink2:#0c0a0e;
-  --blood:#7c1420;
-  --blood-bright:#a81f2e;
-  --rust:#b65a3c;
-  --ash:#8a8088;
-  --bone:#cfc6c2;
-  --pale:#e7e0da;
-  --ghost:#9fb0a8;
+  --ink:#04060a;
+  --ink2:#080c12;
+  --aqua:#7fd4e6;
+  --aqua-bright:#a6e9f7;
+  --aqua-deep:#3a8fa6;
+  --frost:#6aa6b8;
+  --ash:#7d868c;
+  --bone:#c4ccd0;
+  --pale:#e3ecef;
+  --ghost:#9fb6bd;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -29,19 +30,19 @@ body{
   line-height:1.8;
   -webkit-font-smoothing:antialiased;
 }
-::selection{background:rgba(124,20,32,.5);color:var(--pale)}
+::selection{background:rgba(127,212,230,.32);color:var(--pale)}
 
 /* atmosphere layers */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse at 50% 26%, rgba(124,20,32,.16), transparent 50%),
-    radial-gradient(ellipse at 50% 120%, rgba(40,10,14,.5), transparent 60%),
-    radial-gradient(circle at 50% 40%, #0c0a0e 0%, #050406 70%);}
+    radial-gradient(ellipse at 50% 26%, rgba(127,212,230,.12), transparent 50%),
+    radial-gradient(ellipse at 50% 120%, rgba(20,40,52,.5), transparent 60%),
+    radial-gradient(circle at 50% 40%, #080c12 0%, #04060a 70%);}
 /* drifting fog */
 .fog{position:fixed;inset:-20%;z-index:0;pointer-events:none;opacity:.5;
-  background:radial-gradient(ellipse at 30% 40%, rgba(120,120,130,.05), transparent 40%),
-            radial-gradient(ellipse at 70% 60%, rgba(90,90,110,.06), transparent 45%),
-            radial-gradient(ellipse at 50% 80%, rgba(124,20,32,.05), transparent 40%);
+  background:radial-gradient(ellipse at 30% 40%, rgba(127,180,200,.06), transparent 40%),
+            radial-gradient(ellipse at 70% 60%, rgba(90,120,140,.06), transparent 45%),
+            radial-gradient(ellipse at 50% 80%, rgba(127,212,230,.05), transparent 40%);
   animation:fogdrift 26s ease-in-out infinite alternate;filter:blur(8px)}
 @keyframes fogdrift{0%{transform:translate(-3%, 1%) scale(1.05)}100%{transform:translate(4%,-2%) scale(1.12)}}
 /* film grain */
@@ -53,7 +54,7 @@ body{
 
 /* embers / dust */
 .dust{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.mote{position:absolute;bottom:-10px;width:2px;height:2px;border-radius:50%;background:rgba(182,90,60,.5);animation:rise linear infinite}
+.mote{position:absolute;bottom:-10px;width:2px;height:2px;border-radius:50%;background:rgba(127,212,230,.5);animation:rise linear infinite}
 @keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:.7}100%{transform:translateY(-105vh);opacity:0}}
 
 .reveal{opacity:0;transform:translateY(26px);transition:opacity 1.4s ease, transform 1.4s cubic-bezier(.2,.7,.2,1)}
@@ -65,54 +66,53 @@ body{
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;z-index:2}
 .sigil{position:relative;z-index:3;margin-bottom:2.8rem}
-.sigil svg{width:118px;height:auto;overflow:visible;filter:drop-shadow(0 0 22px rgba(124,20,32,.55))}
+.sigil svg{width:118px;height:auto;overflow:visible;filter:drop-shadow(0 0 22px rgba(127,212,230,.5))}
 .halo{position:absolute;top:50%;left:50%;width:280px;height:280px;border-radius:50%;transform:translate(-50%,-50%);
-  background:radial-gradient(circle, rgba(124,20,32,.18), transparent 62%);animation:breathe 6s ease-in-out infinite}
+  background:radial-gradient(circle, rgba(127,212,230,.16), transparent 62%);animation:breathe 6s ease-in-out infinite}
 @keyframes breathe{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
 
-.tag{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.5em;font-size:.68rem;text-transform:uppercase;color:var(--rust);margin-bottom:1.8rem;z-index:3;padding-left:.5em;animation:flicker 7s infinite}
+.tag{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.5em;font-size:.68rem;text-transform:uppercase;color:var(--frost);margin-bottom:1.8rem;z-index:3;padding-left:.5em;animation:flicker 7s infinite}
 .title{font-family:'Cinzel',serif;font-weight:600;line-height:1.02;z-index:3;
   font-size:clamp(2.7rem,8.5vw,6.4rem);letter-spacing:.06em;text-transform:uppercase;
   color:var(--pale);position:relative;
-  text-shadow:0 0 2px rgba(231,224,218,.4), 0 6px 40px rgba(0,0,0,.9);}
-.title .em{color:var(--blood-bright);
-  text-shadow:0 0 18px rgba(168,31,46,.6), 0 0 50px rgba(124,20,32,.5);animation:flicker 5.5s infinite}
-.subtitle{margin-top:2rem;font-family:'Shippori Mincho';font-weight:400;letter-spacing:.36em;font-size:clamp(.82rem,2.2vw,1.02rem);color:var(--ash);z-index:3;font-style:italic}
+  text-shadow:0 0 2px rgba(227,236,239,.4), 0 6px 40px rgba(0,0,0,.9);}
+.title .em{color:var(--aqua-bright);
+  text-shadow:0 0 18px rgba(127,212,230,.6), 0 0 50px rgba(127,212,230,.4);animation:flicker 5.5s infinite}
 .meta-line{margin-top:2.6rem;display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;justify-content:center;z-index:3;font-family:'Cinzel',serif;font-weight:400;letter-spacing:.22em;font-size:.82rem;color:var(--bone);text-transform:uppercase}
-.meta-line .cross{color:var(--blood);font-size:.9rem}
+.meta-line .cross{color:var(--aqua-deep);font-size:.9rem}
 .scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:3;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.46em;color:var(--ash);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:.7}
-.scroll-hint .bar{width:1px;height:40px;background:linear-gradient(180deg,var(--blood),transparent);animation:drop 3s ease-in-out infinite}
+.scroll-hint .bar{width:1px;height:40px;background:linear-gradient(180deg,var(--aqua),transparent);animation:drop 3s ease-in-out infinite}
 @keyframes drop{0%,100%{transform:scaleY(.4);opacity:.3;transform-origin:top}50%{transform:scaleY(1);opacity:.9;transform-origin:top}}
 
 /* SECTIONS */
 section.block{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:8.5rem 2rem}
-.eyebrow{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.46em;text-transform:uppercase;font-size:.64rem;color:var(--blood-bright);margin-bottom:1.8rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:1.1em}
-.eyebrow::before,.eyebrow::after{content:"";width:46px;height:1px;background:linear-gradient(90deg,transparent,rgba(124,20,32,.7))}
-.eyebrow::after{background:linear-gradient(90deg,rgba(124,20,32,.7),transparent)}
+.eyebrow{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.46em;text-transform:uppercase;font-size:.64rem;color:var(--aqua-bright);margin-bottom:1.8rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:1.1em}
+.eyebrow::before,.eyebrow::after{content:"";width:46px;height:1px;background:linear-gradient(90deg,transparent,rgba(127,212,230,.7))}
+.eyebrow::after{background:linear-gradient(90deg,rgba(127,212,230,.7),transparent)}
 .lead{font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(1.55rem,4.4vw,2.5rem);text-align:center;color:var(--pale);line-height:1.55;font-weight:500}
 .copy{margin-top:2.4rem;text-align:center;font-family:'Shippori Mincho';font-weight:400;color:var(--ash);font-size:1.02rem;letter-spacing:.06em;line-height:2.3}
 
 /* PANEL */
-.panel{position:relative;background:linear-gradient(165deg,rgba(20,12,16,.7),rgba(5,4,6,.85));border:1px solid rgba(124,20,32,.32);padding:0;box-shadow:0 40px 100px rgba(0,0,0,.7), inset 0 0 70px rgba(124,20,32,.05);overflow:hidden}
-.panel::before,.panel::after{content:"";position:absolute;width:14px;height:14px;border:1px solid rgba(182,90,60,.55)}
+.panel{position:relative;background:linear-gradient(165deg,rgba(12,18,24,.7),rgba(4,6,10,.85));border:1px solid rgba(127,212,230,.28);padding:0;box-shadow:0 40px 100px rgba(0,0,0,.7), inset 0 0 70px rgba(127,212,230,.05);overflow:hidden}
+.panel::before,.panel::after{content:"";position:absolute;width:14px;height:14px;border:1px solid rgba(127,212,230,.55)}
 .panel::before{top:8px;left:8px;border-right:none;border-bottom:none}
 .panel::after{bottom:8px;right:8px;border-left:none;border-top:none}
-.panel-head{text-align:center;padding:1.1rem;border-bottom:1px solid rgba(124,20,32,.25);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--rust)}
+.panel-head{text-align:center;padding:1.1rem;border-bottom:1px solid rgba(127,212,230,.22);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--frost)}
 .panel-body{padding:2.8rem 2.2rem}
 .dl{display:grid;grid-template-columns:auto 1fr}
-.dl dt{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:.64rem;color:var(--blood-bright);white-space:nowrap;padding:1.4rem 1.8rem 1.4rem 0;border-bottom:1px solid rgba(124,20,32,.16)}
-.dl dd{font-family:'Shippori Mincho';font-weight:400;color:var(--bone);font-size:1.02rem;padding:1.4rem 0;border-bottom:1px solid rgba(124,20,32,.16)}
+.dl dt{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:.64rem;color:var(--aqua-bright);white-space:nowrap;padding:1.4rem 1.8rem 1.4rem 0;border-bottom:1px solid rgba(127,212,230,.14)}
+.dl dd{font-family:'Shippori Mincho';font-weight:400;color:var(--bone);font-size:1.02rem;padding:1.4rem 0;border-bottom:1px solid rgba(127,212,230,.14)}
 .dl dd .big{font-family:'Cinzel',serif;font-weight:600;font-size:1.35rem;letter-spacing:.04em;text-transform:uppercase;color:var(--pale)}
 .dl .last dt,.dl .last dd{border-bottom:none}
 .note{margin-top:1.8rem;text-align:center;font-family:'Shippori Mincho';font-weight:400;font-size:.8rem;color:var(--ash);letter-spacing:.08em;font-style:italic}
 
 /* CTA */
 .cta{text-align:center;padding-bottom:9rem}
-.btn{display:inline-block;margin-top:2.4rem;padding:1.1rem 3.2rem;border:1px solid rgba(124,20,32,.6);color:var(--rust);text-decoration:none;font-family:'Cinzel',serif;font-weight:500;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;transition:all .6s cubic-bezier(.2,.7,.2,1);background:rgba(124,20,32,.05);position:relative}
-.btn:hover{background:var(--blood);color:var(--pale);border-color:var(--blood-bright);box-shadow:0 0 50px rgba(124,20,32,.55);letter-spacing:.34em}
+.btn{display:inline-block;margin-top:2.4rem;padding:1.1rem 3.2rem;border:1px solid rgba(127,212,230,.55);color:var(--aqua-bright);text-decoration:none;font-family:'Cinzel',serif;font-weight:500;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;transition:all .6s cubic-bezier(.2,.7,.2,1);background:rgba(127,212,230,.04);position:relative}
+.btn:hover{background:var(--aqua-deep);color:var(--ink);border-color:var(--aqua-bright);box-shadow:0 0 50px rgba(127,212,230,.45);letter-spacing:.34em}
 
-footer{position:relative;z-index:2;text-align:center;padding:3.5rem 2rem 4.5rem;border-top:1px solid rgba(124,20,32,.2);color:var(--ash);font-family:'Cinzel',serif;font-weight:400;letter-spacing:.24em;font-size:.66rem;text-transform:uppercase}
-footer .req{color:var(--rust);font-size:.94rem;letter-spacing:.4em;margin-bottom:1.1rem;font-family:'EB Garamond';font-style:italic;text-transform:none}
+footer{position:relative;z-index:2;text-align:center;padding:3.5rem 2rem 4.5rem;border-top:1px solid rgba(127,212,230,.18);color:var(--ash);font-family:'Cinzel',serif;font-weight:400;letter-spacing:.24em;font-size:.66rem;text-transform:uppercase}
+footer .req{color:var(--frost);font-size:.94rem;letter-spacing:.4em;margin-bottom:1.1rem;font-family:'EB Garamond';font-style:italic;text-transform:none}
 
 @media(max-width:600px){
   .dl{grid-template-columns:1fr}
@@ -136,19 +136,18 @@ footer .req{color:var(--rust);font-size:.94rem;letter-spacing:.4em;margin-bottom
     <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#d8cfca"/><stop offset=".55" stop-color="#8a8088"/><stop offset="1" stop-color="#7c1420"/>
+          <stop offset="0" stop-color="#dfeef2"/><stop offset=".55" stop-color="#6aa6b8"/><stop offset="1" stop-color="#3a8fa6"/>
         </linearGradient>
       </defs>
       <path d="M60 2 L114 100 L60 198 L6 100 Z" fill="url(#g)" opacity=".1"/>
-      <path d="M60 2 L114 100 L60 198 L6 100 Z" stroke="#b65a3c" stroke-width="1.1" opacity=".85"/>
-      <path d="M60 2 L60 198 M6 100 L114 100" stroke="#7c1420" stroke-width="1" opacity=".7"/>
-      <circle cx="60" cy="100" r="5.5" fill="#a81f2e"/>
-      <circle cx="60" cy="100" r="11" stroke="#7c1420" stroke-width=".6" opacity=".6"/>
+      <path d="M60 2 L114 100 L60 198 L6 100 Z" stroke="#7fd4e6" stroke-width="1.1" opacity=".85"/>
+      <path d="M60 2 L60 198 M6 100 L114 100" stroke="#3a8fa6" stroke-width="1" opacity=".7"/>
+      <circle cx="60" cy="100" r="5.5" fill="#a6e9f7"/>
+      <circle cx="60" cy="100" r="11" stroke="#3a8fa6" stroke-width=".6" opacity=".6"/>
     </svg>
   </div>
   <p class="tag">NAPE ONE-MAN LIVE</p>
   <h1 class="title">THE <span class="em">GREATEST</span><br>ESCAPE</h1>
-  <p class="subtitle">静かに、ゆっくりと、ここではないどこかへ</p>
   <div class="meta-line">
     <span>2025.09.12 FRI</span><span class="cross">&#10013;</span>
     <span>下北沢 BASEMENT BAR</span>
@@ -206,7 +205,7 @@ footer .req{color:var(--rust);font-size:.94rem;letter-spacing:.4em;margin-bottom
     m.style.animationDelay=(Math.random()*dur)+'s';
     const sz=Math.random()*1.6+1;
     m.style.width=sz+'px';m.style.height=sz+'px';
-    if(Math.random()>.6)m.style.background='rgba(138,128,136,.4)';
+    if(Math.random()>.6)m.style.background='rgba(159,182,189,.4)';
     d.appendChild(m);
   }
   const io=new IntersectionObserver((es)=>{
