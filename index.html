@@ -78,8 +78,8 @@ body{
   text-shadow:0 0 2px rgba(227,236,239,.4), 0 6px 40px rgba(0,0,0,.9);}
 .title .em{color:var(--aqua-bright);
   text-shadow:0 0 18px rgba(127,212,230,.6), 0 0 50px rgba(127,212,230,.4);animation:flicker 5.5s infinite}
-.meta-line{margin-top:2.6rem;display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;justify-content:center;z-index:3;font-family:'Cinzel',serif;font-weight:400;letter-spacing:.22em;font-size:.82rem;color:var(--bone);text-transform:uppercase}
-.meta-line .cross{color:var(--aqua-deep);font-size:.9rem}
+.meta-line{margin-top:2.6rem;display:flex;gap:1.3rem;align-items:center;flex-wrap:wrap;justify-content:center;z-index:3;font-family:'Cinzel',serif;font-weight:400;letter-spacing:.22em;font-size:.82rem;color:var(--bone);text-transform:uppercase}
+.sep-dot{display:inline-block;width:5px;height:5px;background:var(--aqua-deep);transform:rotate(45deg);box-shadow:0 0 8px rgba(127,212,230,.5)}
 .scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:3;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.46em;color:var(--ash);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:.7}
 .scroll-hint .bar{width:1px;height:40px;background:linear-gradient(180deg,var(--aqua),transparent);animation:drop 3s ease-in-out infinite}
 @keyframes drop{0%,100%{transform:scaleY(.4);opacity:.3;transform-origin:top}50%{transform:scaleY(1);opacity:.9;transform-origin:top}}
@@ -97,7 +97,8 @@ section.block{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:
 .panel::before,.panel::after{content:"";position:absolute;width:14px;height:14px;border:1px solid rgba(127,212,230,.55)}
 .panel::before{top:8px;left:8px;border-right:none;border-bottom:none}
 .panel::after{bottom:8px;right:8px;border-left:none;border-top:none}
-.panel-head{text-align:center;padding:1.1rem;border-bottom:1px solid rgba(127,212,230,.22);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--frost)}
+.panel-head{display:flex;align-items:center;justify-content:center;gap:1em;padding:1.1rem;border-bottom:1px solid rgba(127,212,230,.22);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--frost)}
+.panel-head .sep-dot{background:var(--frost)}
 .panel-body{padding:2.8rem 2.2rem}
 .dl{display:grid;grid-template-columns:auto 1fr}
 .dl dt{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:.64rem;color:var(--aqua-bright);white-space:nowrap;padding:1.4rem 1.8rem 1.4rem 0;border-bottom:1px solid rgba(127,212,230,.14)}
@@ -118,7 +119,7 @@ footer .req{color:var(--frost);font-size:.94rem;letter-spacing:.4em;margin-botto
   .dl{grid-template-columns:1fr}
   .dl dt{padding:1.1rem 0 .2rem;border-bottom:none}
   .dl dd{padding:0 0 1.1rem}
-  .meta-line{flex-direction:column;gap:.7rem}
+  .meta-line{flex-direction:column;gap:.9rem}
   section.block{padding:6.5rem 1.5rem}
 }
 </style>
@@ -149,7 +150,7 @@ footer .req{color:var(--frost);font-size:.94rem;letter-spacing:.4em;margin-botto
   <p class="tag">NAPE ONE-MAN LIVE</p>
   <h1 class="title">THE <span class="em">GREATEST</span><br>ESCAPE</h1>
   <div class="meta-line">
-    <span>2025.09.12 FRI</span><span class="cross">&#10013;</span>
+    <span>2025.09.12 FRI</span><span class="sep-dot"></span>
     <span>下北沢 BASEMENT BAR</span>
   </div>
   <div class="scroll-hint"><span>set sail</span><span class="bar"></span></div>
@@ -169,7 +170,7 @@ footer .req{color:var(--frost);font-size:.94rem;letter-spacing:.4em;margin-botto
 <section class="block reveal">
   <p class="eyebrow">Sailing Details</p>
   <div class="panel">
-    <div class="panel-head">&#10013;&ensp;The Manifest&ensp;&#10013;</div>
+    <div class="panel-head"><span class="sep-dot"></span>The Manifest<span class="sep-dot"></span></div>
     <div class="panel-body">
       <dl class="dl">
         <dt>Live</dt><dd>NAPE ONE-MAN LIVE<br><span class="big">THE GREATEST ESCAPE</span></dd>
