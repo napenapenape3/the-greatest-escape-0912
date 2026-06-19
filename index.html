@@ -71,7 +71,9 @@ animation:grain .4s steps(2) infinite}
 background:radial-gradient(circle, rgba(127,212,230,.16), transparent 62%);animation:breathe 6s ease-in-out infinite}
 @keyframes breathe{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
 
-.tag{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.42em;font-size:.66rem;text-transform:uppercase;color:var(--frost);margin-bottom:1.8rem;z-index:3;padding-left:.4em;animation:flicker 7s infinite}
+.tag{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.42em;font-size:.66rem;text-transform:uppercase;color:var(--frost);margin-bottom:1.8rem;z-index:3;padding-left:.4em;animation:flicker 7s infinite;display:inline-flex;align-items:baseline;gap:.5em;justify-content:center;flex-wrap:wrap}
+.tag .first{color:var(--aqua-bright);font-weight:600;font-size:.92rem;letter-spacing:.18em;
+text-shadow:0 0 14px rgba(127,212,230,.55), 0 0 30px rgba(127,212,230,.35)}
 .title{font-family:'Cinzel',serif;font-weight:600;line-height:1.02;z-index:3;
 font-size:clamp(2.7rem,8.5vw,6.4rem);letter-spacing:.06em;text-transform:uppercase;
 color:var(--pale);position:relative;
@@ -119,6 +121,9 @@ section.block{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:
 
 /* CTA */
 .cta{text-align:center;padding-bottom:9rem}
+.once{margin-top:2rem;font-family:'Shippori Mincho';font-weight:500;color:var(--frost);font-size:1.02rem;letter-spacing:.1em;line-height:2}
+.once b{color:var(--aqua-bright);font-weight:600;font-family:'Cinzel',serif;letter-spacing:.06em;
+text-shadow:0 0 14px rgba(127,212,230,.5)}
 .btn{display:inline-block;margin-top:2.4rem;padding:1.1rem 3.2rem;border:1px solid rgba(127,212,230,.55);color:var(--aqua-bright);text-decoration:none;font-family:'Cinzel',serif;font-weight:500;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;transition:all .6s cubic-bezier(.2,.7,.2,1);background:rgba(127,212,230,.04);position:relative}
 .btn:hover{background:var(--aqua-deep);color:var(--ink);border-color:var(--aqua-bright);box-shadow:0 0 50px rgba(127,212,230,.45);letter-spacing:.34em}
 
@@ -159,7 +164,7 @@ section.block{padding:6.5rem 1.5rem}
 <circle cx="60" cy="100" r="11" stroke="#3a8fa6" stroke-width=".6" opacity=".6"/>
 </svg>
 </div>
-<p class="tag">NAPE 1st ONE-MAN LIVE</p>
+<p class="tag">NAPE <span class="sep-dot"></span> THE <span class="first">FIRST</span> ONE-MAN LIVE</p>
 <h1 class="title">THE <span class="em">GREATEST</span><br>ESCAPE</h1>
 <div class="meta-line">
 <span>2026.09.12 SAT</span><span class="sep-dot"></span>
@@ -217,6 +222,7 @@ Nape が提供します。
 <section class="block cta reveal">
 <p class="eyebrow">Come Aboard</p>
 <p class="lead" style="font-style:normal">その船出に、立ち会ってほしい。</p>
+<p class="once">最初で、最後かもしれない。<br><b>1st</b> は、一度きり。</p>
 <a class="btn" href="#">Ticket Info — Coming Soon</a>
 </section>
 
