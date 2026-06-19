@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAPE ONE-MAN LIVE「THE GREATEST ESCAPE」</title>
+<title>NAPE 1st ONE-MAN LIVE「THE GREATEST ESCAPE」</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -71,7 +71,7 @@ animation:grain .4s steps(2) infinite}
 background:radial-gradient(circle, rgba(127,212,230,.16), transparent 62%);animation:breathe 6s ease-in-out infinite}
 @keyframes breathe{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
 
-.tag{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.5em;font-size:.68rem;text-transform:uppercase;color:var(--frost);margin-bottom:1.8rem;z-index:3;padding-left:.5em;animation:flicker 7s infinite}
+.tag{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.42em;font-size:.66rem;text-transform:uppercase;color:var(--frost);margin-bottom:1.8rem;z-index:3;padding-left:.4em;animation:flicker 7s infinite}
 .title{font-family:'Cinzel',serif;font-weight:600;line-height:1.02;z-index:3;
 font-size:clamp(2.7rem,8.5vw,6.4rem);letter-spacing:.06em;text-transform:uppercase;
 color:var(--pale);position:relative;
@@ -94,6 +94,7 @@ section.block{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:
 
 /* PANEL */
 .panel{position:relative;background:linear-gradient(165deg,rgba(12,18,24,.7),rgba(4,6,10,.85));border:1px solid rgba(127,212,230,.28);padding:0;box-shadow:0 40px 100px rgba(0,0,0,.7), inset 0 0 70px rgba(127,212,230,.05);overflow:hidden}
+.panel + .panel{margin-top:2.4rem}
 .panel::before,.panel::after{content:"";position:absolute;width:14px;height:14px;border:1px solid rgba(127,212,230,.55)}
 .panel::before{top:8px;left:8px;border-right:none;border-bottom:none}
 .panel::after{bottom:8px;right:8px;border-left:none;border-top:none}
@@ -104,8 +105,15 @@ section.block{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:
 .dl dt{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:.64rem;color:var(--aqua-bright);white-space:nowrap;padding:1.4rem 1.8rem 1.4rem 0;border-bottom:1px solid rgba(127,212,230,.14)}
 .dl dd{font-family:'Shippori Mincho';font-weight:400;color:var(--bone);font-size:1.02rem;padding:1.4rem 0;border-bottom:1px solid rgba(127,212,230,.14)}
 .dl dd .big{font-family:'Cinzel',serif;font-weight:600;font-size:1.35rem;letter-spacing:.04em;text-transform:uppercase;color:var(--pale)}
+.dl dd .sub{display:block;font-size:.86rem;color:var(--ash);margin-top:.35rem;letter-spacing:.04em}
 .dl .last dt,.dl .last dd{border-bottom:none}
 .note{margin-top:1.8rem;text-align:center;font-family:'Shippori Mincho';font-weight:400;font-size:.8rem;color:var(--ash);letter-spacing:.08em;font-style:italic}
+.tline{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.3rem 0;border-bottom:1px solid rgba(127,212,230,.14)}
+.tline:last-of-type{border-bottom:none}
+.tline .tname{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.66rem;color:var(--aqua-bright)}
+.tline .tprice{font-family:'Shippori Mincho';color:var(--bone);font-size:1rem;text-align:right;white-space:nowrap}
+.tline .tprice b{font-family:'Cinzel',serif;font-weight:600;color:var(--pale);font-size:1.1rem;letter-spacing:.02em}
+.tline .tprice .day{color:var(--ash);font-size:.92rem}
 
 /* CTA */
 .cta{text-align:center;padding-bottom:9rem}
@@ -121,6 +129,8 @@ footer .req{color:var(--frost);font-size:.94rem;letter-spacing:.4em;margin-botto
 .dl dd{padding:0 0 1.1rem}
 .meta-line{flex-direction:column;gap:.9rem}
 section.block{padding:6.5rem 1.5rem}
+.tline{flex-direction:column;gap:.4rem}
+.tline .tprice{text-align:left}
 }
 </style>
 </head>
@@ -147,11 +157,11 @@ section.block{padding:6.5rem 1.5rem}
 <circle cx="60" cy="100" r="11" stroke="#3a8fa6" stroke-width=".6" opacity=".6"/>
 </svg>
 </div>
-<p class="tag">NAPE ONE-MAN LIVE</p>
+<p class="tag">NAPE 1st ONE-MAN LIVE</p>
 <h1 class="title">THE <span class="em">GREATEST</span><br>ESCAPE</h1>
 <div class="meta-line">
-<span>2025.09.12 FRI</span><span class="sep-dot"></span>
-<span>下北沢 BASEMENT BAR</span>
+<span>2026.09.12 SAT</span><span class="sep-dot"></span>
+<span>下北沢 BASEMENTBAR</span>
 </div>
 <div class="scroll-hint"><span>set sail</span><span class="bar"></span></div>
 </header>
@@ -170,11 +180,23 @@ section.block{padding:6.5rem 1.5rem}
 <div class="panel-head"><span class="sep-dot"></span>The Manifest<span class="sep-dot"></span></div>
 <div class="panel-body">
 <dl class="dl">
-<dt>Live</dt><dd>NAPE ONE-MAN LIVE<br><span class="big">THE GREATEST ESCAPE</span></dd>
-<dt>Date</dt><dd><span class="big">2025.09.12</span> (FRI)</dd>
-<dt class="last">Port</dt><dd class="last">下北沢 BASEMENT BAR</dd>
+<dt>Live</dt><dd>NAPE 1st ONE-MAN LIVE<br><span class="big">THE GREATEST ESCAPE</span></dd>
+<dt>Date</dt><dd><span class="big">2026.09.12</span> (SAT)</dd>
+<dt>Time</dt><dd>OPEN 18:00 / START 18:30<span class="sub">END 20:30 予定</span></dd>
+<dt class="last">Venue</dt><dd class="last">下北沢 BASEMENTBAR<span class="sub">〒155-0032 東京都世田谷区代沢5-18-1<br>カラバッシュビル B1F</span></dd>
 </dl>
-<p class="note">OPEN / START・チケット詳細は、追ってお知らせいたします。</p>
+</div>
+</div>
+</section>
+
+<section class="block reveal">
+<p class="eyebrow">Ticket</p>
+<div class="panel">
+<div class="panel-head"><span class="sep-dot"></span>Boarding Pass<span class="sep-dot"></span></div>
+<div class="panel-body">
+<div class="tline"><span class="tname">一般 / General</span><span class="tprice">前売 <b>¥3,500</b><span class="day"> ／ 当日 ¥4,000</span></span></div>
+<div class="tline"><span class="tname">学割 / Student</span><span class="tprice">前売 <b>¥2,000</b><span class="day"> ／ 当日 ¥2,500</span></span></div>
+<p class="note">手売りチケット：2026.06.21〜　／　PG・イープラス：仕込み次第、最短にて。</p>
 </div>
 </div>
 </section>
@@ -187,7 +209,7 @@ section.block{padding:6.5rem 1.5rem}
 
 <footer>
 <div class="req">— bon voyage —</div>
-NAPE &emsp;/&emsp; THE GREATEST ESCAPE &emsp;/&emsp; 2025.09.12 &emsp;/&emsp; SHIMOKITAZAWA BASEMENT BAR
+NAPE &emsp;/&emsp; THE GREATEST ESCAPE &emsp;/&emsp; 2026.09.12 &emsp;/&emsp; SHIMOKITAZAWA BASEMENTBAR
 </footer>
 
 <script>
