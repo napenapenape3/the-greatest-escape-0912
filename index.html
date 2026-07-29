@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
---ink:#04060a;
---ink2:#080c12;
+--ink:#0c141c;
+--ink2:#16222e;
 --aqua:#7fd4e6;
 --aqua-bright:#a6e9f7;
 --aqua-deep:#3a8fa6;
 --frost:#6aa6b8;
---ash:#7d868c;
---bone:#c4ccd0;
+--ash:#9aa5ab;
+--bone:#ccd4d8;
 --pale:#e3ecef;
---ghost:#9fb6bd;
+--ghost:#adc2c8;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -35,11 +35,11 @@ line-height:1.8;
 /* atmosphere layers */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;
 background:
-radial-gradient(ellipse at 50% 26%, rgba(127,212,230,.12), transparent 50%),
-radial-gradient(ellipse at 50% 120%, rgba(20,40,52,.5), transparent 60%),
-radial-gradient(circle at 50% 40%, #080c12 0%, #04060a 70%);}
+radial-gradient(ellipse at 50% 26%, rgba(127,212,230,.18), transparent 55%),
+radial-gradient(ellipse at 50% 120%, rgba(28,56,72,.6), transparent 62%),
+radial-gradient(circle at 50% 40%, var(--ink2) 0%, var(--ink) 72%);}
 /* drifting fog */
-.fog{position:fixed;inset:-20%;z-index:0;pointer-events:none;opacity:.5;
+.fog{position:fixed;inset:-20%;z-index:0;pointer-events:none;opacity:.8;
 background:radial-gradient(ellipse at 30% 40%, rgba(127,180,200,.06), transparent 40%),
 radial-gradient(ellipse at 70% 60%, rgba(90,120,140,.06), transparent 45%),
 radial-gradient(ellipse at 50% 80%, rgba(127,212,230,.05), transparent 40%);
@@ -90,12 +90,12 @@ section.block{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:
 .eyebrow::before,.eyebrow::after{content:"";width:46px;height:1px;background:linear-gradient(90deg,transparent,rgba(127,212,230,.7))}
 .eyebrow::after{background:linear-gradient(90deg,rgba(127,212,230,.7),transparent)}
 .lead{font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(1.5rem,4.2vw,2.35rem);text-align:center;color:var(--pale);line-height:1.6;font-weight:500}
-.copy{margin-top:2.6rem;text-align:center;font-family:'Shippori Mincho';font-weight:400;color:var(--ash);font-size:1.02rem;letter-spacing:.06em;line-height:2.35}
+.copy{margin-top:2.6rem;text-align:center;font-family:'Shippori Mincho';font-weight:400;color:var(--ash);font-size:1.06rem;letter-spacing:.04em;line-height:2.35}
 .copy .gap{display:block;height:1.5rem}
 .copy em{font-style:normal;color:var(--frost)}
 
 /* PANEL */
-.panel{position:relative;background:linear-gradient(165deg,rgba(12,18,24,.7),rgba(4,6,10,.85));border:1px solid rgba(127,212,230,.28);padding:0;box-shadow:0 40px 100px rgba(0,0,0,.7), inset 0 0 70px rgba(127,212,230,.05);overflow:hidden}
+.panel{position:relative;background:linear-gradient(165deg,rgba(24,34,44,.72),rgba(12,20,28,.86));border:1px solid rgba(127,212,230,.34);padding:0;box-shadow:0 40px 100px rgba(0,0,0,.7), inset 0 0 70px rgba(127,212,230,.05);overflow:hidden}
 .panel + .panel{margin-top:2.4rem}
 .panel::before,.panel::after{content:"";position:absolute;width:14px;height:14px;border:1px solid rgba(127,212,230,.55)}
 .panel::before{top:8px;left:8px;border-right:none;border-bottom:none}
@@ -104,8 +104,8 @@ section.block{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:
 .panel-head .sep-dot{background:var(--frost)}
 .panel-body{padding:2.8rem 2.2rem}
 .dl{display:grid;grid-template-columns:auto 1fr}
-.dl dt{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:.64rem;color:var(--aqua-bright);white-space:nowrap;padding:1.4rem 1.8rem 1.4rem 0;border-bottom:1px solid rgba(127,212,230,.14)}
-.dl dd{font-family:'Shippori Mincho';font-weight:400;color:var(--bone);font-size:1.02rem;padding:1.4rem 0;border-bottom:1px solid rgba(127,212,230,.14)}
+.dl dt{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:.64rem;color:var(--aqua-bright);white-space:nowrap;padding:1.4rem 1.8rem 1.4rem 0;border-bottom:1px solid rgba(127,212,230,.26)}
+.dl dd{font-family:'Shippori Mincho';font-weight:400;color:var(--bone);font-size:1.02rem;padding:1.4rem 0;border-bottom:1px solid rgba(127,212,230,.26)}
 .dl dd .big{font-family:'Cinzel',serif;font-weight:600;font-size:1.35rem;letter-spacing:.04em;text-transform:uppercase;color:var(--pale)}
 .dl dd .sub{display:block;font-size:.86rem;color:var(--ash);margin-top:.35rem;letter-spacing:.04em}
 .dl .last dt,.dl .last dd{border-bottom:none}
@@ -125,7 +125,7 @@ text-shadow:0 0 14px rgba(127,212,230,.5)}
 .btn{display:inline-block;margin-top:2.4rem;padding:1.1rem 3.2rem;border:1px solid rgba(127,212,230,.55);color:var(--aqua-bright);text-decoration:none;font-family:'Cinzel',serif;font-weight:500;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;transition:all .6s cubic-bezier(.2,.7,.2,1);background:rgba(127,212,230,.04);position:relative}
 .btn:hover{background:var(--aqua-deep);color:var(--ink);border-color:var(--aqua-bright);box-shadow:0 0 50px rgba(127,212,230,.45);letter-spacing:.34em}
 
-footer{position:relative;z-index:2;text-align:center;padding:3.5rem 2rem 4.5rem;border-top:1px solid rgba(127,212,230,.18);color:var(--ash);font-family:'Cinzel',serif;font-weight:400;letter-spacing:.24em;font-size:.66rem;text-transform:uppercase}
+footer{position:relative;z-index:2;text-align:center;padding:3.5rem 2rem 4.5rem;border-top:1px solid rgba(127,212,230,.3);color:var(--ash);font-family:'Cinzel',serif;font-weight:400;letter-spacing:.24em;font-size:.66rem;text-transform:uppercase}
 footer .req{color:var(--frost);font-size:.94rem;letter-spacing:.4em;margin-bottom:1.1rem;font-family:'EB Garamond';font-style:italic;text-transform:none}
 footer .brand{text-transform:none;letter-spacing:.1em}
 
