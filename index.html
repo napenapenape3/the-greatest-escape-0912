@@ -153,6 +153,151 @@ section.block{padding:6.5rem 1.5rem}
 .share{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:14px}
 .share-label{font-family:Cinzel,serif;font-size:9.5px;letter-spacing:.42em;color:#6f8b95}
 @media (max-width:600px){.map iframe{height:220px}.sub-actions{gap:10px}.btn-mini{padding:11px 16px}}
+
+/* ================= BOARDING PASS TICKET ================= */
+
+.bpass{position:relative;display:grid;grid-template-columns:1fr 22px 132px;
+ background:linear-gradient(165deg,rgba(24,34,44,.72),rgba(12,20,28,.9));
+ border:1px solid rgba(127,212,230,.34);
+ box-shadow:0 40px 100px rgba(0,0,0,.7), inset 0 0 70px rgba(127,212,230,.05)}
+.bpass::before,.bpass::after{content:"";position:absolute;width:14px;height:14px;border:1px solid rgba(127,212,230,.55);pointer-events:none}
+.bpass::before{top:8px;left:8px;border-right:none;border-bottom:none}
+.bpass::after{bottom:8px;right:8px;border-left:none;border-top:none}
+.bp-main{padding:0 0 2.2rem}
+.bp-top{display:flex;align-items:center;justify-content:space-between;gap:1em;
+ padding:1.05rem 1.6rem;border-bottom:1px solid rgba(127,212,230,.22);
+ font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--frost)}
+.bp-top .bp-title{letter-spacing:.5em;color:var(--aqua-bright)}
+.bp-top .bp-no{opacity:.7;letter-spacing:.28em}
+.bp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+ border-bottom:1px solid rgba(127,212,230,.14)}
+.bp-f{padding:1.25rem 1.6rem;border-right:1px dashed rgba(127,212,230,.14);border-bottom:1px dashed rgba(127,212,230,.14)}
+.bp-f:nth-child(3n){border-right:none}
+.bp-f:nth-last-child(-n+3){border-bottom:none}
+.bp-f span{display:block;font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.34em;
+ text-transform:uppercase;color:rgba(166,233,247,.62);margin-bottom:.55rem}
+.bp-f b{font-family:'Shippori Mincho',serif;font-weight:400;font-size:.95rem;
+ letter-spacing:.06em;color:var(--bone);display:block;line-height:1.4}
+.bp-f b.mono{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.1em}
+.bp-fares{padding:.6rem 1.6rem 0}
+.bp-fares .tline:first-child{padding-top:1.4rem}
+.bp-note{margin:1.4rem 1.6rem 0;text-align:left;font-family:'Shippori Mincho',serif;
+ font-size:.76rem;line-height:1.9;color:var(--ash);letter-spacing:.06em;font-style:italic}
+.bp-perf{position:relative}
+.bp-perf::before{content:"";position:absolute;left:50%;top:14px;bottom:14px;width:0;
+ border-left:1px dashed rgba(127,212,230,.5)}
+.bp-notch{position:absolute;left:50%;width:20px;height:20px;border-radius:50%;
+ background:rgb(12, 20, 28);transform:translate(-50%,-50%);box-shadow:inset 0 0 0 1px rgba(127,212,230,.28)}
+.bp-notch.t{top:0}
+.bp-notch.b{top:100%}
+.bp-stub{display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+ padding:1.4rem .6rem 1.6rem;gap:1rem}
+.bp-stub-top{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;
+ color:rgba(166,233,247,.62);text-align:center;line-height:2}
+.bp-stub-label{writing-mode:vertical-rl;font-family:'Cinzel',serif;font-weight:600;
+ font-size:.72rem;letter-spacing:.44em;text-transform:uppercase;color:var(--aqua-bright);
+ text-shadow:0 0 18px rgba(127,212,230,.35)}
+.bp-barcode{width:74px;height:44px;background-image:repeating-linear-gradient(90deg,
+ rgba(204,212,216,.85) 0 2px, transparent 2px 4px, rgba(204,212,216,.85) 4px 5px,
+ transparent 5px 8px, rgba(204,212,216,.85) 8px 11px, transparent 11px 13px)}
+.bp-stub-no{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.24em;color:var(--frost)}
+@media (max-width:640px){
+ .bpass{grid-template-columns:1fr;grid-template-rows:auto 22px auto}
+ .bp-grid{grid-template-columns:repeat(2,1fr)}
+ .bp-f{border-right:1px dashed rgba(127,212,230,.14)!important;border-bottom:1px dashed rgba(127,212,230,.14)!important}
+ .bp-f:nth-child(2n){border-right:none!important}
+ .bp-perf::before{left:14px;right:14px;top:50%;bottom:auto;width:auto;height:0;
+  border-left:none;border-top:1px dashed rgba(127,212,230,.5)}
+ .bp-notch.t{left:0;top:50%}
+ .bp-notch.b{left:100%;top:50%}
+ .bp-stub{flex-direction:row}
+ .bp-stub-label{writing-mode:horizontal-tb}
+}
+
+.bp-notch{box-shadow:none!important;width:18px;height:18px}
+.bp-stub{background:linear-gradient(180deg,rgba(127,212,230,.045),rgba(127,212,230,.012))}
+.bp-fare-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.34em;text-transform:uppercase;
+ color:rgba(166,233,247,.62);margin:1.6rem 1.6rem -.4rem}
+.bpass{z-index:2}
+
+.bp-notch{display:none!important}
+.bpass{--px:calc(100% - 143px);
+ -webkit-mask-image:radial-gradient(circle 11px at var(--px) 0, transparent 97%, #000 100%),radial-gradient(circle 11px at var(--px) 100%, transparent 97%, #000 100%);
+ mask-image:radial-gradient(circle 11px at var(--px) 0, transparent 97%, #000 100%),radial-gradient(circle 11px at var(--px) 100%, transparent 97%, #000 100%);
+ -webkit-mask-composite:source-in;mask-composite:intersect}
+.bp-stub{background:linear-gradient(180deg,rgba(127,212,230,.075),rgba(127,212,230,.02))!important}
+.bp-stub-top{color:rgba(166,233,247,.78)}
+.bp-perf::before{top:20px;bottom:20px}
+
+/* ============ MOBILE TEAR-OFF (もぎり) ============ */
+
+/* === MOBILE TEAR-OFF STUB (もぎり) === */
+.bpass{--tear:0}
+.bp-stubwrap{position:relative;display:flex;flex-direction:column}
+.bp-stubwrap>.bp-stub{flex:1}
+.bp-tear-edge,.bp-tear-hint,.bp-torn{display:none}
+@media (max-width:640px){
+ .bpass{-webkit-mask-image:none;mask-image:none;overflow:visible;
+  transition:border-color .45s ease, margin-bottom .5s cubic-bezier(.3,.8,.3,1)}
+ .bpass::after{transition:opacity .4s ease}
+ .bpass.is-torn{border-bottom-color:transparent;margin-bottom:124px}
+ .bpass.is-torn::after{opacity:0}
+ .bp-stubwrap{transition:height .5s cubic-bezier(.3,.8,.3,1)}
+ .bp-stub{position:relative;z-index:3;touch-action:none;cursor:grab;
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;will-change:transform;
+  box-shadow:0 calc(var(--tear)*16px) calc(var(--tear)*30px) rgba(0,0,0,calc(var(--tear)*.5))}
+ .bp-stub.is-dragging{cursor:grabbing}
+ .bp-stub::after{content:"";position:absolute;left:50%;bottom:5px;transform:translateX(-50%);
+  width:30px;height:3px;border-radius:2px;background:rgba(166,233,247,.3)}
+ .bp-perf{overflow:visible}
+ .bp-perf::before{opacity:calc(1 - var(--tear)*.85)}
+ .bp-notch{opacity:calc(1 - var(--tear)*.9)}
+ .bp-tear-edge{display:block;position:absolute;left:0;right:0;top:50%;height:9px;
+  transform:translateY(-50%);opacity:var(--tear);pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='9'%3E%3Cpath d='M0 4.5 L4.5 1.5 L9 6 L13.5 2.5 L18 4.5' fill='none' stroke='%23a6e9f7' stroke-opacity='.8' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-position:center;
+  filter:drop-shadow(0 0 6px rgba(127,212,230,.45))}
+ .bp-tear-hint{display:flex;position:absolute;left:0;right:0;top:100%;margin-top:14px;
+  align-items:center;justify-content:center;gap:.6em;pointer-events:none;transition:opacity .35s;
+  font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(166,233,247,.6)}
+ .bp-tear-hint .jp{font-family:'Shippori Mincho',serif;letter-spacing:.14em;font-size:.62rem;color:rgba(154,165,171,.92);text-transform:none}
+ .bp-tear-hint .arw{animation:bpTearArrow 1.9s ease-in-out infinite}
+ @keyframes bpTearArrow{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(4px);opacity:1}}
+ .bpass.is-dragging .bp-tear-hint,.bpass.is-torn .bp-tear-hint{opacity:0}
+ .bp-torn{position:absolute;left:0;right:0;top:100%;margin-top:26px;display:none;
+  flex-direction:column;align-items:center;justify-content:center;gap:.5rem;text-align:center;pointer-events:none}
+ .bpass.is-torn .bp-torn{display:flex;animation:bpTornIn .9s ease .3s both}
+ @keyframes bpTornIn{0%{opacity:0;letter-spacing:.5em;transform:translateY(8px)}100%{opacity:1;transform:none}}
+ .bp-torn .l{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--aqua-bright);text-shadow:0 0 16px rgba(127,212,230,.45)}
+ .bp-torn .jp{font-family:'Shippori Mincho',serif;font-size:.7rem;letter-spacing:.08em;color:var(--ash)}
+ .bp-torn .bp-restore{pointer-events:auto;margin-top:.25rem;font-family:'Cinzel',serif;font-size:.48rem;
+  letter-spacing:.24em;text-transform:uppercase;color:rgba(166,233,247,.7);background:rgba(127,212,230,.05);
+  border:1px solid rgba(127,212,230,.28);padding:7px 14px;cursor:pointer}
+}
+@media (prefers-reduced-motion:reduce){
+ .bp-tear-hint .arw{animation:none}
+ .bp-stubwrap,.bpass{transition:none}
+}
+
+@media (max-width:640px){
+ .bpass.is-torn{margin-bottom:150px}
+ .bp-torn{gap:.45rem}
+ .bp-torn .jp .nb{white-space:nowrap}
+ .bp-torn .bp-cta{pointer-events:auto;margin-top:.55rem;display:inline-flex;align-items:center;gap:.7em;
+  text-decoration:none;padding:12px 20px;transition:background .35s ease, box-shadow .35s ease, border-color .35s ease;
+  color:var(--aqua-bright);border:1px solid rgba(127,212,230,.5);background:rgba(127,212,230,.06);
+  box-shadow:0 0 26px rgba(127,212,230,.1)}
+ .bp-torn .bp-cta .dia{font-family:'Cinzel',serif;font-size:.5rem;opacity:.85}
+ .bp-torn .bp-cta .lb{font-family:'Shippori Mincho',serif;font-size:.72rem;letter-spacing:.14em;color:var(--pale)}
+ .bp-torn .bp-cta .ar{font-family:'Cinzel',serif;font-size:.6rem;opacity:.8}
+ .bp-torn .bp-cta:active{background:rgba(127,212,230,.15);border-color:rgba(166,233,247,.8);
+  box-shadow:0 0 34px rgba(127,212,230,.28)}
+ .bp-torn .bp-restore{margin-top:.5rem;border:none;background:none;padding:6px 8px;
+  font-family:'Shippori Mincho',serif;font-size:.62rem;letter-spacing:.1em;text-transform:none;
+  color:rgba(154,165,171,.7);text-decoration:underline;text-underline-offset:3px}
+}
+
 </style>
 
 <!-- favicon -->
@@ -256,6 +401,27 @@ Nape が提供します。
 <p class="note">手売りチケット：ライブ会場物販にて販売中<br><a href="https://eplus.jp/sf/detail/4564810001" target="_blank" rel="noopener noreferrer" style="color:var(--aqua-bright);text-decoration:underline;text-underline-offset:3px">イープラス</a>：2026.07.11(土)10:00〜発売　<a href="https://eplus.jp/sf/detail/4564810001" target="_blank" rel="noopener noreferrer" style="color:var(--aqua-bright);text-decoration:none;white-space:nowrap">▸ 購入する</a></p>
 </div>
 </div>
+<div class="bpass" id="bpDemo">
+<div class="bp-main">
+ <div class="bp-top"><span class="bp-brand">◆ NAPE</span><span class="bp-title">Boarding Pass</span><span class="bp-no">No. 0912</span></div>
+ <div class="bp-grid">
+  <div class="bp-f"><span>Passenger</span><b class="mono">Admit One</b></div>
+  <div class="bp-f"><span>Date</span><b class="mono">2026.09.12 SAT</b></div>
+  <div class="bp-f"><span>Seat</span><b class="mono">Standing</b></div>
+  <div class="bp-f"><span>Gate Open</span><b class="mono">18:00</b></div>
+  <div class="bp-f"><span>Start</span><b class="mono">18:30</b></div>
+  <div class="bp-f"><span>Venue</span><b>下北沢 BASEMENTBAR</b></div>
+ </div>
+ <div class="bp-fare-label">Fare</div><div class="bp-fares"><div class="tline"><span class="tname">一般 / General</span><span class="tprice">前売 <b>¥3,500</b><span class="day"> ／ 当日 ¥4,000</span></span></div><div class="tline"><span class="tname">学割 / Student</span><span class="tprice">前売 <b>¥2,000</b><span class="day"> ／ 当日 ¥2,500</span></span></div></div>
+ <p class="bp-note">手売りチケット：ライブ会場物販にて販売中<br><a href="https://eplus.jp/sf/detail/4564810001" target="_blank" rel="noopener noreferrer" style="color:var(--aqua-bright);text-decoration:underline;text-underline-offset:3px">イープラス</a>：2026.07.11(土)10:00〜発売　<a href="https://eplus.jp/sf/detail/4564810001" target="_blank" rel="noopener noreferrer" style="color:var(--aqua-bright);text-decoration:none;white-space:nowrap">▸ 購入する</a></p>
+</div>
+<div class="bp-perf"><span class="bp-notch t"></span><span class="bp-notch b"></span><span class="bp-tear-edge"></span></div>
+<div class="bp-stubwrap"><div class="bp-stub">
+ <div class="bp-stub-top">ONE<br>NIGHT<br>ONLY</div>
+ <div class="bp-stub-label">Admit One</div>
+ <div class="bp-barcode"></div>
+ <div class="bp-stub-no">0912</div>
+</div></div><div class="bp-tear-hint"><span class="arw">▼</span><span>swipe to tear</span><span class="jp">半券をもぎる</span><span class="arw">▼</span></div><div class="bp-torn"><span class="l">◆ torn ◆</span><span class="jp">もぎりました。<span class="nb">当日は、本物の半券で。</span></span><a class="bp-cta" href="https://eplus.jp/sf/detail/4564810001" target="_blank" rel="noopener noreferrer"><span class="dia">◆</span><span class="lb">イープラスで購入する</span><span class="ar">▸</span></a><button class="bp-restore" type="button">半券を戻す</button></div></div>
 </section>
 
 <section class="block cta reveal">
@@ -310,6 +476,87 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       setTimeout(function(){b.textContent='COPY LINK';},1600);
     });
   });
+})();
+</script>
+<script>
+(function bpTearInit(){
+  var bp=document.getElementById('bpDemo');
+  if(!bp)return;
+  var stub=bp.querySelector('.bp-stub');
+  var wrap=bp.querySelector('.bp-stubwrap');
+  var restore=bp.querySelector('.bp-restore');
+  if(!stub||!wrap)return;
+  var mq=window.matchMedia('(max-width:640px)');
+  var rm=window.matchMedia('(prefers-reduced-motion:reduce)');
+  var TH=64, dragging=false, active=false, sx=0, sy=0, dx=0, dy=0, lastBuzz=0;
+
+  function setP(p){ bp.style.setProperty('--tear',p); }
+  function buzz(n){ if(navigator.vibrate){ try{ navigator.vibrate(n); }catch(e){} } }
+
+  function down(e){
+    if(!mq.matches || bp.classList.contains('is-torn')) return;
+    if(e.pointerType==='mouse' && e.button!==0) return;
+    dragging=true; active=false; sx=e.clientX; sy=e.clientY; dx=0; dy=0; lastBuzz=0;
+    stub.style.transition='none';
+    try{ stub.setPointerCapture(e.pointerId); }catch(err){}
+  }
+  function move(e){
+    if(!dragging) return;
+    dx=e.clientX-sx; var raw=e.clientY-sy;
+    if(!active){ if(Math.abs(raw)<4 && Math.abs(dx)<4) return; active=true; stub.classList.add('is-dragging'); bp.classList.add('is-dragging'); }
+    if(raw<0) raw=raw*0.25;
+    dy = raw>TH ? TH+(raw-TH)*0.5 : raw;
+    var p=Math.max(0,Math.min(1,dy/TH));
+    setP(p);
+    stub.style.transform='translate('+(dx*0.18)+'px,'+dy+'px) rotate('+(p*1.4+dx*0.004)+'deg)';
+    if(p>0 && dy-lastBuzz>9){ lastBuzz=dy; buzz(2); }
+    e.preventDefault();
+  }
+  function up(){
+    if(!dragging) return;
+    dragging=false; stub.classList.remove('is-dragging'); bp.classList.remove('is-dragging');
+    if(dy>=TH) tear(); else spring();
+  }
+  function spring(){
+    stub.style.transition='transform .5s cubic-bezier(.25,1.5,.4,1)';
+    stub.style.transform='none';
+    var from=parseFloat(bp.style.getPropertyValue('--tear'))||0, t0=performance.now();
+    (function fade(){ var k=Math.min(1,(performance.now()-t0)/260); setP(from*(1-k)); if(k<1) requestAnimationFrame(fade); })();
+    dy=0; dx=0;
+  }
+  function tear(){
+    var slow=rm.matches;
+    setP(1);
+    wrap.style.height=wrap.offsetHeight+'px';
+    stub.style.transition = slow ? 'opacity .35s ease' : 'transform .6s cubic-bezier(.2,.8,.3,1),opacity .6s ease';
+    stub.style.transform = slow ? 'translate(0,'+dy+'px)' : 'translate('+(dx*0.35+10)+'px,'+(dy+160)+'px) rotate(11deg)';
+    stub.style.opacity='0';
+    buzz([10,26,14]);
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ wrap.style.height='0px'; }); });
+    setTimeout(function(){ stub.style.visibility='hidden'; bp.classList.add('is-torn'); }, slow?300:340);
+  }
+  function reset(){
+    bp.classList.remove('is-torn');
+    stub.style.transition='none'; stub.style.transform='none'; stub.style.opacity=''; stub.style.visibility='';
+    wrap.style.height='';
+    setP(0); dy=0; dx=0;
+  }
+  function syncA11y(){
+    if(mq.matches){ stub.setAttribute('role','button'); stub.setAttribute('tabindex','0'); stub.setAttribute('aria-label','チケットの半券をもぎる'); }
+    else { stub.removeAttribute('role'); stub.removeAttribute('tabindex'); stub.removeAttribute('aria-label'); reset(); }
+  }
+  stub.addEventListener('pointerdown',down);
+  stub.addEventListener('pointermove',move,{passive:false});
+  stub.addEventListener('pointerup',up);
+  stub.addEventListener('pointercancel',up);
+  stub.addEventListener('dragstart',function(e){ e.preventDefault(); });
+  stub.addEventListener('keydown',function(e){
+    if(!mq.matches) return;
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(bp.classList.contains('is-torn')) reset(); else { dy=TH; dx=0; tear(); } }
+  });
+  if(restore) restore.addEventListener('click',reset);
+  if(mq.addEventListener) mq.addEventListener('change',syncA11y);
+  syncA11y();
 })();
 </script>
 </body>
