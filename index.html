@@ -126,6 +126,13 @@ text-shadow:0 0 14px rgba(127,212,230,.5)}
 .btn:hover{background:var(--aqua-deep);color:var(--ink);border-color:var(--aqua-bright);box-shadow:0 0 50px rgba(127,212,230,.45);letter-spacing:.34em}
 .hero-btn{margin-top:2.6rem}
 @media(max-width:600px){.hero-btn{padding:1rem 2.4rem;font-size:.66rem}}
+.countdown{margin-top:2.6rem;z-index:3}
+.cd-label{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.36em;font-size:.6rem;text-transform:uppercase;color:var(--ash);margin-bottom:1rem}
+.cd-row{display:flex;gap:1.6rem;justify-content:center;align-items:flex-start}
+.cd-cell{display:flex;flex-direction:column;align-items:center;min-width:44px}
+.cd-num{font-family:'Cinzel',serif;font-weight:600;font-size:1.7rem;color:var(--aqua-bright);letter-spacing:.03em;text-shadow:0 0 16px rgba(127,212,230,.45);font-variant-numeric:tabular-nums;line-height:1}
+.cd-unit{font-family:'Cinzel',serif;font-weight:400;font-size:.56rem;letter-spacing:.22em;color:var(--ash);margin-top:.5rem;text-transform:uppercase}
+@media(max-width:600px){.cd-row{gap:1rem}.cd-num{font-size:1.3rem}.cd-cell{min-width:36px}}
 
 footer{position:relative;z-index:2;text-align:center;padding:3.5rem 2rem 4.5rem;border-top:1px solid rgba(127,212,230,.3);color:var(--ash);font-family:'Cinzel',serif;font-weight:400;letter-spacing:.24em;font-size:.66rem;text-transform:uppercase}
 footer .req{color:var(--frost);font-size:.94rem;letter-spacing:.4em;margin-bottom:1.1rem;font-family:'EB Garamond';font-style:italic;text-transform:none}
@@ -436,6 +443,15 @@ section.block{padding:6.5rem 1.5rem}
 <span>下北沢 BASEMENTBAR</span>
 </div>
 <a class="btn hero-btn" href="https://eplus.jp/sf/detail/4564810001" target="_blank" rel="noopener noreferrer">チケットを購入 / Buy Tickets</a>
+<div class="countdown" id="countdown">
+<p class="cd-label">Countdown to Showtime</p>
+<div class="cd-row">
+<div class="cd-cell"><span class="cd-num" id="cdD">00</span><span class="cd-unit">Days</span></div>
+<div class="cd-cell"><span class="cd-num" id="cdH">00</span><span class="cd-unit">Hrs</span></div>
+<div class="cd-cell"><span class="cd-num" id="cdM">00</span><span class="cd-unit">Min</span></div>
+<div class="cd-cell"><span class="cd-num" id="cdS">00</span><span class="cd-unit">Sec</span></div>
+</div>
+</div>
 </header>
 
 <section class="block reveal">
@@ -658,6 +674,32 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   });
   if(restore) restore.addEventListener('click',reset);
   if(mqM.addEventListener) mqM.addEventListener('change',function(){ reset(); });
+})();
+</script>
+<script>
+(function(){
+  var el = document.getElementById('countdown');
+  if(!el) return;
+  var target = new Date('2026-09-12T18:30:00+09:00').getTime();
+  var dEl=document.getElementById('cdD'), hEl=document.getElementById('cdH'), mEl=document.getElementById('cdM'), sEl=document.getElementById('cdS');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  var timer;
+  function tick(){
+    var diff = target - Date.now();
+    if(diff <= 0){
+      dEl.textContent='00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00';
+      el.querySelector('.cd-label').textContent = 'On Stage Now';
+      clearInterval(timer);
+      return;
+    }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor(diff%86400000/3600000);
+    var m = Math.floor(diff%3600000/60000);
+    var s = Math.floor(diff%60000/1000);
+    dEl.textContent=pad(d); hEl.textContent=pad(h); mEl.textContent=pad(m); sEl.textContent=pad(s);
+  }
+  tick();
+  timer = setInterval(tick, 1000);
 })();
 </script>
 </body>
