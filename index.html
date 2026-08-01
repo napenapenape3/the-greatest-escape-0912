@@ -765,5 +765,169 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   })();
 })();
 </script>
+  <style>
+/* ============ BOARDING RECORD (share card) ============ */
+.rec{margin-top:2.4rem;opacity:0;max-height:0;overflow:hidden;
+transition:opacity .8s ease, max-height .9s ease}
+.rec.on{opacity:1;max-height:900px}
+.rec-card{position:relative;padding:1.9rem 1.7rem 1.6rem;text-align:center;
+background:linear-gradient(165deg,rgba(24,34,44,.78),rgba(10,17,24,.94));
+border:1px solid rgba(127,212,230,.4);
+box-shadow:0 30px 90px rgba(0,0,0,.7), inset 0 0 60px rgba(127,212,230,.06)}
+.rec-card::before,.rec-card::after{content:"";position:absolute;width:12px;height:12px;border:1px solid rgba(127,212,230,.6)}
+.rec-card::before{top:7px;left:7px;border-right:none;border-bottom:none}
+.rec-card::after{bottom:7px;right:7px;border-left:none;border-top:none}
+.rec-top{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.34em;text-transform:uppercase;
+color:var(--frost);padding-bottom:1.2rem;border-bottom:1px dashed rgba(127,212,230,.2)}
+.rec-lab{display:block;font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;
+text-transform:uppercase;color:var(--frost);margin-bottom:.5rem}
+.rec-serial{padding:1.5rem 0 1.2rem}
+.rec-serial b{display:block;font-family:'Cinzel',serif;font-weight:600;font-size:1.7rem;
+letter-spacing:.14em;color:var(--pale);text-shadow:0 0 18px rgba(127,212,230,.45)}
+.rec-d{padding:1.1rem 0 1.3rem;border-top:1px dashed rgba(127,212,230,.2);border-bottom:1px dashed rgba(127,212,230,.2)}
+.rec-d b{font-family:'Cinzel',serif;font-weight:600;font-size:3rem;line-height:1;color:var(--aqua-bright);
+text-shadow:0 0 26px rgba(127,212,230,.5)}
+.rec-d i{font-style:normal;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.34em;
+color:var(--frost);margin-left:.6em;text-transform:uppercase}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:.2rem}
+.rec-grid div{padding:1rem .4rem;border-bottom:1px dashed rgba(127,212,230,.14);border-right:1px dashed rgba(127,212,230,.14)}
+.rec-grid div:nth-child(2n){border-right:none}
+.rec-grid div.wide{grid-column:1/-1;border-right:none}
+.rec-grid div:last-child,.rec-grid div.wide:last-child{border-bottom:none}
+.rec-grid b{font-family:'Shippori Mincho',serif;font-weight:400;font-size:.84rem;color:var(--bone);letter-spacing:.04em}
+.rec-bar{height:32px;margin:1.2rem auto .9rem;max-width:190px;
+background-image:repeating-linear-gradient(90deg,rgba(204,212,216,.85) 0 2px, transparent 2px 4px,
+rgba(204,212,216,.85) 4px 5px, transparent 5px 8px, rgba(204,212,216,.85) 8px 11px, transparent 11px 13px);opacity:.55}
+.rec-foot{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:var(--frost);opacity:.85}
+.rec-act{position:relative;z-index:2;display:flex;gap:.8rem;justify-content:center;margin-top:1.4rem;flex-wrap:wrap}
+.rec-hint{position:relative;z-index:2;margin-top:.9rem;font-family:'Shippori Mincho',serif;font-size:.66rem;color:var(--ash);letter-spacing:.06em}
+@media (max-width:640px){.rec-serial b{font-size:1.4rem}.rec-d b{font-size:2.5rem}}
+</style>
+<script>
+/* ============ BOARDING RECORD: serial + share card ============ */
+(function(){
+var bp=document.getElementById('bpDemo');
+if(!bp)return;
+var ticketSection=bp.closest('section');
+if(!ticketSection)return;
+
+var wrap=document.createElement('div');
+wrap.className='rec';
+wrap.id='rec';
+wrap.setAttribute('role','group');
+wrap.setAttribute('aria-label','搭乗記録');
+ticketSection.appendChild(wrap);
+
+var KEY_NO='tge-serial', KEY_AT='tge-serial-at';
+var CS='ACDEFGHJKLMNPQRTUVWXY', NS='23456789';
+function makeSerial(){
+var a=new Uint8Array(4);
+(window.crypto||window.msCrypto).getRandomValues(a);
+return '0912-'+CS[a[0]%CS.length]+NS[a[1]%NS.length]+CS[a[2]%CS.length]+NS[a[3]%NS.length];
+}
+var serial=localStorage.getItem(KEY_NO);
+if(!serial){ serial=makeSerial(); localStorage.setItem(KEY_NO,serial); }
+var issued=localStorage.getItem(KEY_AT);
+if(!issued){
+var t=new Date(); issued=t.getFullYear()+'.'+String(t.getMonth()+1).padStart(2,'0')+'.'+String(t.getDate()).padStart(2,'0');
+localStorage.setItem(KEY_AT,issued);
+}
+var target=new Date('2026-09-12T18:30:00+09:00').getTime();
+function daysLeft(){ return Math.max(0,Math.ceil((target-Date.now())/86400000)); }
+
+wrap.innerHTML=
+'<div class="rec-card">'+
+'<div class="rec-top">◆ Nape &nbsp;—&nbsp; Boarding Record ◆</div>'+
+'<div class="rec-serial"><span class="rec-lab">Passenger No.</span><b>'+serial+'</b></div>'+
+'<div class="rec-d"><span class="rec-lab">Escape in</span><b id="recDays">'+daysLeft()+'</b><i>days</i></div>'+
+'<div class="rec-grid">'+
+'<div><span class="rec-lab">Date</span><b>2026.09.12 SAT</b></div>'+
+'<div><span class="rec-lab">Open</span><b>18:00 / 18:30</b></div>'+
+'<div class="wide"><span class="rec-lab">Venue</span><b>下北沢 BASEMENTBAR</b></div>'+
+'<div class="wide"><span class="rec-lab">Issued</span><b>'+issued+'</b></div>'+
+'</div>'+
+'<div class="rec-bar"></div>'+
+'<div class="rec-foot">The Greatest Escape ◆ One Night Only</div>'+
+'</div>'+
+'<div class="rec-act">'+
+'<button type="button" class="btn-mini" id="recShareX">◆ Xでポスト</button>'+
+'<button type="button" class="btn-mini" id="recSaveImg">◆ 画像を保存</button>'+
+'</div>'+
+'<div class="rec-hint">この番号は端末内で生成・保存され、どこにも送信されません。</div>';
+
+function refreshDays(){ var e=document.getElementById('recDays'); if(e) e.textContent=daysLeft(); }
+setInterval(refreshDays,60000);
+
+function reveal(){ wrap.classList.add('on'); refreshDays(); }
+function hide(){ wrap.classList.remove('on'); }
+var obs=new MutationObserver(function(){
+if(bp.classList.contains('is-torn')) reveal(); else hide();
+});
+obs.observe(bp,{attributes:true,attributeFilter:['class']});
+if(bp.classList.contains('is-torn')) reveal();
+
+function buildCard(cb){
+var W=1200,H=630,c=document.createElement('canvas');c.width=W;c.height=H;
+var x=c.getContext('2d'),cx=W/2;
+function draw(){
+x.fillStyle='#0c141c';x.fillRect(0,0,W,H);
+var g=x.createRadialGradient(cx,H*0.16,0,cx,H*0.16,W*0.72);
+g.addColorStop(0,'rgba(127,212,230,.17)');g.addColorStop(1,'rgba(12,20,28,0)');
+x.fillStyle=g;x.fillRect(0,0,W,H);
+g=x.createRadialGradient(cx,H*1.15,0,cx,H*1.15,W*0.62);
+g.addColorStop(0,'rgba(28,56,72,.6)');g.addColorStop(1,'rgba(12,20,28,0)');
+x.fillStyle=g;x.fillRect(0,0,W,H);
+x.strokeStyle='rgba(127,212,230,.4)';x.lineWidth=2;x.strokeRect(40,40,W-80,H-80);
+x.strokeStyle='rgba(127,212,230,.72)';
+[[58,58,1,1],[W-58,58,-1,1],[58,H-58,1,-1],[W-58,H-58,-1,-1]].forEach(function(p){
+x.beginPath();x.moveTo(p[0]+22*p[2],p[1]);x.lineTo(p[0],p[1]);x.lineTo(p[0],p[1]+22*p[3]);x.stroke();
+});
+x.textAlign='center';
+x.fillStyle='#6aa6b8';x.font='500 19px Cinzel, serif';
+x.fillText('◆  N A P E    —    B O A R D I N G   R E C O R D  ◆',cx,104);
+x.font='500 16px Cinzel, serif';x.fillText('P A S S E N G E R   N O .',cx,172);
+x.shadowColor='rgba(127,212,230,.55)';x.shadowBlur=28;
+x.fillStyle='#e3ecef';x.font='600 76px Cinzel, serif';x.fillText(serial,cx,250);
+x.shadowBlur=0;
+x.strokeStyle='rgba(127,212,230,.22)';x.lineWidth=1;
+x.beginPath();x.moveTo(230,288);x.lineTo(W-230,288);x.stroke();
+x.fillStyle='#6aa6b8';x.font='500 16px Cinzel, serif';x.fillText('E S C A P E   I N',cx,326);
+x.shadowColor='rgba(127,212,230,.5)';x.shadowBlur=34;
+x.fillStyle='#a6e9f7';x.font='600 106px Cinzel, serif';x.fillText(String(daysLeft()),cx-46,424);
+x.shadowBlur=0;
+x.fillStyle='#6aa6b8';x.font='500 22px Cinzel, serif';x.textAlign='left';x.fillText('D A Y S',cx+30,424);
+x.textAlign='center';
+x.fillStyle='#ccd4d8';x.font='400 25px "Shippori Mincho", serif';
+x.fillText('2026.09.12 SAT　OPEN 18:00 / START 18:30',cx,478);
+x.fillText('下北沢 BASEMENTBAR',cx,512);
+x.fillStyle='rgba(173,194,200,.4)';
+var pat=[],bw=0;
+for(var i=0;i<30;i++){ var w=(i%4===0)?6:3; pat.push(w); bw+=w+6; }
+var bx=cx-bw/2;
+pat.forEach(function(w){ x.fillRect(bx,536,w,26); bx+=w+6; });
+x.fillStyle='#6aa6b8';x.font='500 14px Cinzel, serif';
+x.fillText('I S S U E D  '+issued+'   ◆   T H E   G R E A T E S T   E S C A P E   ◆   O N E   N I G H T   O N L Y',cx,580);
+cb(c);
+}
+if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(draw); } else { draw(); }
+}
+
+var btnSave=document.getElementById('recSaveImg');
+var btnX=document.getElementById('recShareX');
+if(btnSave) btnSave.addEventListener('click',function(){
+buildCard(function(c){
+var a=document.createElement('a');
+a.href=c.toDataURL('image/png');
+a.download='the-greatest-escape-'+serial+'.png';
+a.click();
+});
+});
+if(btnX) btnX.addEventListener('click',function(){
+var text='#TheGreatestEscape の搭乗券をもぎった。\nPASSENGER NO. '+serial+' / ESCAPE IN '+daysLeft()+' DAYS\nNape 1st ONE-MAN LIVE「THE GREATEST ESCAPE」\n2026.09.12(SAT) 下北沢BASEMENTBAR';
+var url='https://napenapenape3.github.io/the-greatest-escape-0912/';
+window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url),'_blank','noopener');
+});
+})();
+</script>
 </body>
 </html>
