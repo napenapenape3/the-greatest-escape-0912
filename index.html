@@ -867,49 +867,57 @@ obs.observe(bp,{attributes:true,attributeFilter:['class']});
 if(bp.classList.contains('is-torn')) reveal();
 
 function buildCard(cb){
-var W=1200,H=630,c=document.createElement('canvas');c.width=W;c.height=H;
-var x=c.getContext('2d'),cx=W/2;
-function draw(){
-x.fillStyle='#0c141c';x.fillRect(0,0,W,H);
-var g=x.createRadialGradient(cx,H*0.16,0,cx,H*0.16,W*0.72);
-g.addColorStop(0,'rgba(127,212,230,.17)');g.addColorStop(1,'rgba(12,20,28,0)');
-x.fillStyle=g;x.fillRect(0,0,W,H);
-g=x.createRadialGradient(cx,H*1.15,0,cx,H*1.15,W*0.62);
-g.addColorStop(0,'rgba(28,56,72,.6)');g.addColorStop(1,'rgba(12,20,28,0)');
-x.fillStyle=g;x.fillRect(0,0,W,H);
-x.strokeStyle='rgba(127,212,230,.4)';x.lineWidth=2;x.strokeRect(40,40,W-80,H-80);
-x.strokeStyle='rgba(127,212,230,.72)';
-[[58,58,1,1],[W-58,58,-1,1],[58,H-58,1,-1],[W-58,H-58,-1,-1]].forEach(function(p){
-x.beginPath();x.moveTo(p[0]+22*p[2],p[1]);x.lineTo(p[0],p[1]);x.lineTo(p[0],p[1]+22*p[3]);x.stroke();
-});
-x.textAlign='center';
-x.fillStyle='#6aa6b8';x.font='500 19px Cinzel, serif';
-x.fillText('◆  N A P E    —    B O A R D I N G   R E C O R D  ◆',cx,104);
-x.font='500 16px Cinzel, serif';x.fillText('P A S S E N G E R   N O .',cx,172);
-x.shadowColor='rgba(127,212,230,.55)';x.shadowBlur=28;
-x.fillStyle='#e3ecef';x.font='600 76px Cinzel, serif';x.fillText(serial,cx,250);
-x.shadowBlur=0;
-x.strokeStyle='rgba(127,212,230,.22)';x.lineWidth=1;
-x.beginPath();x.moveTo(230,288);x.lineTo(W-230,288);x.stroke();
-x.fillStyle='#6aa6b8';x.font='500 16px Cinzel, serif';x.fillText('E S C A P E   I N',cx,326);
-x.shadowColor='rgba(127,212,230,.5)';x.shadowBlur=34;
-x.fillStyle='#a6e9f7';x.font='600 106px Cinzel, serif';x.fillText(String(daysLeft()),cx-46,424);
-x.shadowBlur=0;
-x.fillStyle='#6aa6b8';x.font='500 22px Cinzel, serif';x.textAlign='left';x.fillText('D A Y S',cx+30,424);
-x.textAlign='center';
-x.fillStyle='#ccd4d8';x.font='400 25px "Shippori Mincho", serif';
-x.fillText('2026.09.12 SAT　OPEN 18:00 / START 18:30',cx,478);
-x.fillText('下北沢 BASEMENTBAR',cx,512);
-x.fillStyle='rgba(173,194,200,.4)';
-var pat=[],bw=0;
-for(var i=0;i<30;i++){ var w=(i%4===0)?6:3; pat.push(w); bw+=w+6; }
-var bx=cx-bw/2;
-pat.forEach(function(w){ x.fillRect(bx,536,w,26); bx+=w+6; });
-x.fillStyle='#6aa6b8';x.font='500 14px Cinzel, serif';
-x.fillText('I S S U E D  '+issued+'   ◆   T H E   G R E A T E S T   E S C A P E   ◆   O N E   N I G H T   O N L Y',cx,580);
-cb(c);
-}
-if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(draw); } else { draw(); }
+  var W=1200,H=630,c=document.createElement('canvas');c.width=W;c.height=H;
+  var x=c.getContext('2d'),cx=W/2;
+  function blob(bxp,byp,r,color){var g=x.createRadialGradient(bxp,byp,0,bxp,byp,r);g.addColorStop(0,color);g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,W,H);}
+  function draw(){
+    x.fillStyle='#0c141c';x.fillRect(0,0,W,H);
+    var base=x.createLinearGradient(0,0,W,H);base.addColorStop(0,'rgba(22,34,46,1)');base.addColorStop(1,'rgba(9,15,21,1)');x.fillStyle=base;x.fillRect(0,0,W,H);
+    blob(cx,H*0.05,W*0.75,'rgba(127,212,230,.16)');
+    blob(cx*0.35,H*1.05,W*0.5,'rgba(28,56,72,.5)');
+    blob(cx*1.6,H*0.9,W*0.45,'rgba(90,120,140,.10)');
+    blob(cx,H*0.5,W*0.3,'rgba(127,212,230,.05)');
+    var vg=x.createRadialGradient(cx,H/2,H*0.25,cx,H/2,H*0.75);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.55)');x.fillStyle=vg;x.fillRect(0,0,W,H);
+    var noise=document.createElement('canvas');noise.width=W;noise.height=H;var nxc=noise.getContext('2d');var imgData=nxc.createImageData(W,H);
+    for(var ni=0;ni<imgData.data.length;ni+=4){var nv=Math.random()*255;imgData.data[ni]=nv;imgData.data[ni+1]=nv;imgData.data[ni+2]=nv;imgData.data[ni+3]=18;}
+    nxc.putImageData(imgData,0,0);
+    x.globalCompositeOperation='overlay';x.globalAlpha=0.5;x.drawImage(noise,0,0);x.globalAlpha=1;x.globalCompositeOperation='source-over';
+    x.strokeStyle='rgba(127,212,230,.4)';x.lineWidth=2;x.strokeRect(40,40,W-80,H-80);
+    x.strokeStyle='rgba(127,212,230,.15)';x.lineWidth=1;x.strokeRect(48,48,W-96,H-96);
+    x.strokeStyle='rgba(127,212,230,.72)';x.lineWidth=2;
+    [[58,58,1,1],[W-58,58,-1,1],[58,H-58,1,-1],[W-58,H-58,-1,-1]].forEach(function(p){x.beginPath();x.moveTo(p[0],p[1]+22*p[3]);x.lineTo(p[0],p[1]);x.lineTo(p[0]+22*p[2],p[1]);x.stroke();});
+    x.globalCompositeOperation='destination-out';x.fillStyle='#000';
+    x.beginPath();x.arc(0,H/2,26,0,Math.PI*2);x.fill();
+    x.beginPath();x.arc(W,H/2,26,0,Math.PI*2);x.fill();
+    x.globalCompositeOperation='source-over';
+    for(var di=0;di<40;di++){var dmx=40+Math.random()*(W-80),dmy=40+Math.random()*(H-80),dr=Math.random()*1.6+0.4;x.fillStyle='rgba(127,212,230,'+(Math.random()*0.35+0.05).toFixed(2)+')';x.beginPath();x.arc(dmx,dmy,dr,0,Math.PI*2);x.fill();}
+    x.textAlign='center';
+    x.fillStyle='#6aa6b8';x.font='500 19px Cinzel, serif';x.fillText('◆  N A P E   —   B O A R D I N G   R E C O R D  ◆',cx,104);
+    x.font='500 16px Cinzel, serif';x.fillText('P A S S E N G E R   N O .',cx,172);
+    x.shadowColor='rgba(127,212,230,.55)';x.shadowBlur=28;
+    x.fillStyle='#e3ecef';x.font='600 76px Cinzel, serif';x.fillText(serial,cx,250);
+    x.shadowBlur=0;
+    x.strokeStyle='rgba(127,212,230,.22)';x.lineWidth=1;
+    x.beginPath();x.moveTo(230,288);x.lineTo(W-230,288);x.stroke();
+    x.fillStyle='#6aa6b8';x.font='500 16px Cinzel, serif';x.fillText('E S C A P E   I N',cx,326);
+    x.shadowColor='rgba(127,212,230,.5)';x.shadowBlur=34;
+    x.fillStyle='#a6e9f7';x.font='600 106px Cinzel, serif';x.fillText(String(daysLeft()),cx-46,424);
+    x.shadowBlur=0;
+    x.fillStyle='#6aa6b8';x.font='500 22px Cinzel, serif';x.textAlign='left';x.fillText('D A Y S',cx+30,424);
+    x.textAlign='center';
+    x.fillStyle='#ccd4d8';x.font='400 25px "Shippori Mincho", serif';
+    x.fillText('2026.09.12 SAT　OPEN 18:00 / START 18:30',cx,478);
+    x.fillText('下北沢 BASEMENTBAR',cx,512);
+    x.fillStyle='rgba(173,194,200,.4)';
+    var pat=[],bw=0;
+    for(var i=0;i<30;i++){ var w=(i%4===0)?3:6; pat.push(w); bw+=w+6; }
+    var bx=cx-bw/2;
+    pat.forEach(function(w){ x.fillRect(bx,536,w,26); bx+=w+6; });
+    x.fillStyle='#6aa6b8';x.font='500 14px Cinzel, serif';
+    x.fillText('I S S U E D '+issued+'   ◆   T H E   G R E A T E S T   E S C A P E   ◆   O N E   N I G H T   O N L Y',cx,580);
+    cb(c);
+  }
+  if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(draw); } else { draw(); }
 }
 
 var btnSave=document.getElementById('recSaveImg');
